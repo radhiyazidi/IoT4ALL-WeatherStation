@@ -1,6 +1,5 @@
 # IoT4ALL -- Mini Connected Weather Station
 
-# IoT4ALL-WeatherStation
 A collaborative learning project by the **IoT4ALL Club** focused on
 building a complete IoT weather monitoring system using embedded
 systems, wireless communication, and cloud technologies.
@@ -105,12 +104,6 @@ This project is released under the **MIT License**.
 -   Datasheets and references
 
 ------------------------------------------------------------------------
-
-## 🎉 Final Notes
-
-This repository represents the collaborative work of passionate students
-exploring the world of IoT.\
-Feel free to fork, contribute, and continue building this project!
 
 ## 🎉 Final Notes
 
