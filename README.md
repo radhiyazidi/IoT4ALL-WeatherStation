@@ -23,10 +23,10 @@ cloud integration.
 ## 🎯 Objectives
 
 -   Introduce students to **embedded systems**, **sensors**, and **IoT
-communication**
+    communication**\
 -   Apply real‑world engineering concepts: interrupts, signal
-    processing, calibration
--   Build teamwork, documentation skills, and hands-on experience
+    processing, calibration\
+-   Build teamwork, documentation skills, and hands-on experience\
 -   Create a functional prototype and improve it with iterative sessions
 
 ------------------------------------------------------------------------
@@ -48,7 +48,7 @@ communication**
     │
     ├── code/
     │   ├── sender-pico/
-    │   │   ├── Sender.ino
+    │   │   ├── sender-pico.ino
     │   └── receiver-esp32/
     │       └── ReceiverS.ino
     │
@@ -86,7 +86,7 @@ members.
 
 ## 👥 Contributors
 
-IoT4ALL Club Members -- 2025/2026
+IoT4ALL Club Members -- 2025/2026\
 Supervised by: **Radhi Yazidi**
 
 ------------------------------------------------------------------------
@@ -100,7 +100,7 @@ This project is released under the **MIT License**.
 ## 🔗 Useful Links
 
 -   Official Club Page: *https://www.facebook.com/ClubIoT4ALLISSATM/*\
--   Project tutorials
+-   Project tutorials\
 -   Datasheets and references
 
 ------------------------------------------------------------------------

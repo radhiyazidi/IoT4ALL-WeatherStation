@@ -59,17 +59,18 @@ void loop() {
   t = dht.readTemperature();
   meassure();
   Serial.print("Température ");
-  Serial.print(t);
+  Serial.print(t);      //temperature in °C
   Serial.print(" °C - ");
   Serial.print("Humidité ");
   Serial.print(h);
+  Serial.print(" % - ");
   Serial.print("Vitesse du vent: ");
   Serial.print(v);       //Speed in km/h
   Serial.print(" km/h - ");
   Serial.print("Pluie: ");
   Serial.print(p);       //rain in mm
   Serial.print(" mm - ");
-  Serial.print(" % \n");
+  Serial.print("\n");
   
   LoRaMessage = String(t) + "/" + String(h) + "&" + String(v) + "-" + String(p);
   //Send LoRa packet to receiver

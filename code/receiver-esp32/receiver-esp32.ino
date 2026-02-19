@@ -1,4 +1,3 @@
-
 #include <SPI.h>
 #include <LoRa.h>
 #include <Wire.h>
@@ -12,12 +11,12 @@ const long frequency = 433E6;
 const long spreadingFactor = 7;
 const long bandwidth = 125E3;
 const int codingRate = 5;
-int pos1, pos2;
+int pos1, pos2, pos3;
 
 // Initialize variables to get and save LoRa data
 int rssi;
 String loRaMessage;
-String t, h, v;
+String t, h, v, p;
 int packetSize = 0;
 
 void setup() {
@@ -29,7 +28,6 @@ void setup() {
   //setup LoRa transceiver module
   LoRa.setPins(ss, rst, dio0);
   
-  //replace the LoRa.begin(---E-) argument with your location's frequency 
   while (!LoRa.begin(frequency)) {
     Serial.println(".");
     delay(500);
@@ -52,15 +50,19 @@ void loop() {
       String LoRaData = LoRa.readString();
       pos1 = LoRaData.indexOf('/');
       pos2 = LoRaData.indexOf('&');
+      pos3 = LoRaData.indexOf('-');
       t = LoRaData.substring(0, pos1);
       h = LoRaData.substring(pos1 +1, pos2);
-      v = LoRaData.substring(pos2 +1, LoRaData.length());
+      v = LoRaData.substring(pos2 +1, pos3);
+      p = LoRaData.substring(pos3 +1, LoRaData.length());
       Serial.print(t);
-      Serial.print(" ");
+      Serial.print("°C - ");
       Serial.print(h);
-      Serial.print(" ");
+      Serial.print("% - ");
       Serial.print(v);
-      Serial.print(" "); 
+      Serial.print("km/h - ");
+      Serial.print(p);
+      Serial.print("mm - "); 
     }
     Serial.println(LoRa.packetRssi());
     //Serial.println(packetSize);
