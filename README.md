@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 # IoT4ALL -- Mini Connected Weather Station
 
 =======
 # IoT4ALL-WeatherStation
->>>>>>> aa3b1d7a5af0b86a20e14a506f9a49f2935f671b
 A collaborative learning project by the **IoT4ALL Club** focused on
 building a complete IoT weather monitoring system using embedded
 systems, wireless communication, and cloud technologies.
