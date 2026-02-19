@@ -58,17 +58,17 @@ void loop() {
   h = dht.readHumidity();
   t = dht.readTemperature();
   meassure();
-  Serial.print("Pluie: ");
-  Serial.print(p);       //rain in mm
-  Serial.print(" mm - ");
-  Serial.print("Vitesse du vent: ");
-  Serial.print(v);       //Speed in km/h
-  Serial.print(" km/h - ");
   Serial.print("Température ");
   Serial.print(t);
   Serial.print(" °C - ");
   Serial.print("Humidité ");
   Serial.print(h);
+  Serial.print("Vitesse du vent: ");
+  Serial.print(v);       //Speed in km/h
+  Serial.print(" km/h - ");
+  Serial.print("Pluie: ");
+  Serial.print(p);       //rain in mm
+  Serial.print(" mm - ");
   Serial.print(" % \n");
   
   LoRaMessage = String(t) + "/" + String(h) + "&" + String(v) + "-" + String(p);
