@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 # IoT4ALL -- Mini Connected Weather Station
 
+=======
+# IoT4ALL-WeatherStation
+>>>>>>> aa3b1d7a5af0b86a20e14a506f9a49f2935f671b
 A collaborative learning project by the **IoT4ALL Club** focused on
 building a complete IoT weather monitoring system using embedded
 systems, wireless communication, and cloud technologies.
@@ -9,9 +13,15 @@ systems, wireless communication, and cloud technologies.
 ## 🚀 Project Overview
 
 This project aims to design and implement a **Mini Connected Weather
+<<<<<<< HEAD
 Station** capable of measuring environmental parameters such as:\
 - Wind speed (Hall‑effect anemometer)\
 - Rainfall (tipping‑bucket rain gauge + Hall sensor)\
+=======
+Station** capable of measuring environmental parameters such as:
+- Wind speed (Hall‑effect anemometer)
+- Rainfall (tipping‑bucket rain gauge + Hall sensor)
+>>>>>>> aa3b1d7a5af0b86a20e14a506f9a49f2935f671b
 - Temperature & humidity
 
 Data is transmitted wirelessly using **LoRa** and **WiFi**, processed by
@@ -23,21 +33,36 @@ cloud integration.
 ## 🎯 Objectives
 
 -   Introduce students to **embedded systems**, **sensors**, and **IoT
+<<<<<<< HEAD
     communication**\
 -   Apply real‑world engineering concepts: interrupts, signal
     processing, calibration\
 -   Build teamwork, documentation skills, and hands-on experience\
+=======
+    communication**
+-   Apply real‑world engineering concepts: interrupts, signal
+    processing, calibration
+-   Build teamwork, documentation skills, and hands-on experience
+>>>>>>> aa3b1d7a5af0b86a20e14a506f9a49f2935f671b
 -   Create a functional prototype and improve it with iterative sessions
 
 ------------------------------------------------------------------------
 
 ## 🛠 Technologies & Tools
 
+<<<<<<< HEAD
 -   **Raspberry Pi Pico W**\
 -   **Esp32**\
 -   **Hall‑effect sensors** for rainfall and wind speed\
 -   **LoRa SX1276/SX1278** modules\
 -   **Fritzing** for wiring documentation\
+=======
+-   **Raspberry Pi Pico W**
+-   **Esp32**
+-   **Hall‑effect sensors** for rainfall and wind speed
+-   **LoRa SX1276/SX1278** modules
+-   **Fritzing** for wiring documentation
+>>>>>>> aa3b1d7a5af0b86a20e14a506f9a49f2935f671b
 -   **GitHub** for version control and collaboration
 
 ------------------------------------------------------------------------
@@ -72,11 +97,19 @@ cloud integration.
 
 ## 📸 Documentation
 
+<<<<<<< HEAD
 Every session includes:\
 - A short description\
 - What was achieved\
 - Photos or diagrams\
 - Code updates\
+=======
+Every session includes:
+- A short description
+- What was achieved
+- Photos or diagrams
+- Code updates
+>>>>>>> aa3b1d7a5af0b86a20e14a506f9a49f2935f671b
 - Remaining tasks
 
 This ensures a professional and reproducible workflow for future club
@@ -86,7 +119,11 @@ members.
 
 ## 👥 Contributors
 
+<<<<<<< HEAD
 IoT4ALL Club Members -- 2025/2026\
+=======
+IoT4ALL Club Members -- 2025/2026
+>>>>>>> aa3b1d7a5af0b86a20e14a506f9a49f2935f671b
 Supervised by: **Radhi Yazidi**
 
 ------------------------------------------------------------------------
@@ -99,8 +136,13 @@ This project is released under the **MIT License**.
 
 ## 🔗 Useful Links
 
+<<<<<<< HEAD
 -   Official Club Page: *https://www.facebook.com/ClubIoT4ALLISSATM/*\
 -   Project tutorials\
+=======
+-   Official Club Page: *https://www.facebook.com/ClubIoT4ALLISSATM/*
+-   Project tutorials
+>>>>>>> aa3b1d7a5af0b86a20e14a506f9a49f2935f671b
 -   Datasheets and references
 
 ------------------------------------------------------------------------

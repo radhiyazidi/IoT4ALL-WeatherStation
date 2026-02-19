@@ -2,21 +2,23 @@
 #include <LoRa.h>
 #include "DHT.h"
 
-
-
 #define DHTPIN 5
 #define DHTTYPE DHT11
+const int WindSensor = 15;
+const int PluvSensor = 16;
+const float mmPercycle = 0.173;
+int state = 0;
+int statePrec = 0;
+
 const int RecordTime = 3; //Define Measuring Time (Seconds)
-const int SensorPin = 15;
+
 const long frequency = 433E6;
 const long spreadingFactor = 7;
 const long bandwidth = 125E3;
 const int codingRate = 5;
 
-
-
 int InterruptCounter;
-float v=0, h=0, t=0;
+float v=0, h=0, t=0, p=0;
 String LoRaMessage = "";
 
 DHT dht(DHTPIN, DHTTYPE);
@@ -50,14 +52,15 @@ void setup() {
   LoRa.setCodingRate4(codingRate);
   //LoRa.setTxPower(18);
   Serial.println("LoRa Initializing OK!");
-
-  
 }
 
 void loop() {
   h = dht.readHumidity();
   t = dht.readTemperature();
   meassure();
+  Serial.print("Pluie: ");
+  Serial.print(p);       //rain in mm
+  Serial.print(" mm - ");
   Serial.print("Vitesse du vent: ");
   Serial.print(v);       //Speed in km/h
   Serial.print(" km/h - ");
@@ -68,22 +71,30 @@ void loop() {
   Serial.print(h);
   Serial.print(" % \n");
   
-  LoRaMessage = String(t) + "/" + String(h) + "&" + String(v);
+  LoRaMessage = String(t) + "/" + String(h) + "&" + String(v) + "-" + String(p);
   //Send LoRa packet to receiver
   LoRa.beginPacket();
   LoRa.print(LoRaMessage);
   LoRa.endPacket();
 
-  //counter++;
   delay(5000);
 }
 
 void meassure() {
+  //Wind speed
   InterruptCounter = 0;
-  attachInterrupt(digitalPinToInterrupt(SensorPin), countup, RISING);
+  attachInterrupt(digitalPinToInterrupt(WindSensor), countup, RISING);
   delay(1000 * RecordTime);
-  detachInterrupt(digitalPinToInterrupt(SensorPin));
+  detachInterrupt(digitalPinToInterrupt(WindSensor));
   v = (float)InterruptCounter / (float)RecordTime * 2.4;
+  
+  //Pluviometer
+  state = digitalRead(16);
+  if (state != statePrec) {
+    p = p + mmPercycle;
+  }
+  delay(500);
+  statePrec = state;
 }
 
 void countup() {
