@@ -5,15 +5,15 @@
 #define DHTPIN 5
 #define DHTTYPE DHT11
 const int WindSensor = 15;
-const int PluvSensor = 16;
+const int PluvSensor = 14;
 const float mmPercycle = 0.173;
 int state = 0;
-int statePrec = 0;
+int statePrec = 1;
 
 const int RecordTime = 3; //Define Measuring Time (Seconds)
 
 const long frequency = 433E6;
-const long spreadingFactor = 7;
+const long spreadingFactor = 12;
 const long bandwidth = 125E3;
 const int codingRate = 5;
 
@@ -69,7 +69,7 @@ void loop() {
   Serial.print(" km/h - ");
   Serial.print("Pluie: ");
   Serial.print(p);       //rain in mm
-  Serial.print(" mm - ");
+  Serial.print(" mm ");
   Serial.print("\n");
   
   LoRaMessage = String(t) + "/" + String(h) + "&" + String(v) + "-" + String(p);
@@ -90,7 +90,7 @@ void meassure() {
   v = (float)InterruptCounter / (float)RecordTime * 2.4;
   
   //Pluviometer
-  state = digitalRead(16);
+  state = digitalRead(PluvSensor);
   if (state != statePrec) {
     p = p + mmPercycle;
   }

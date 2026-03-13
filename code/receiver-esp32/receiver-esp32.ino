@@ -1,6 +1,9 @@
 #include <SPI.h>
 #include <LoRa.h>
 #include <Wire.h>
+#include <ESPAsyncWebServer.h>
+#include <ArduinoJson.h>
+#include <WiFi.h>
 
 //define the pins used by the transceiver module
 #define ss 5
@@ -8,7 +11,7 @@
 #define dio0 2
 
 const long frequency = 433E6;
-const long spreadingFactor = 7;
+const long spreadingFactor = 12;
 const long bandwidth = 125E3;
 const int codingRate = 5;
 int pos1, pos2, pos3;
@@ -16,12 +19,39 @@ int pos1, pos2, pos3;
 // Initialize variables to get and save LoRa data
 int rssi;
 String loRaMessage;
-String t, h, v, p;
+double temperature, humidity, windSpeed, rainfall;
+String t, h, w, r;
 int packetSize = 0;
 
+const char* ssid = "Ooredoo _S20_3EEB";
+const char* pass = "6E27D3EF";
+AsyncWebServer server(8080);
+
 void setup() {
+
+Serial.begin(9600);
+WiFi.begin(ssid, pass);
+while (WiFi.status() != WL_CONNECTED) {
+  delay(500);
+  Serial.print(".");
+}
+Serial.println();
+Serial.print("IP: "); Serial.println(WiFi.localIP());
+server.on("/data", HTTP_GET, [](AsyncWebServerRequest *request){
+  StaticJsonDocument<200> doc;
+  doc["temperature"] = temperature;
+  doc["humidity"]    = humidity;
+  doc["windSpeed"]   = windSpeed;
+  doc["rainfall"]    = rainfall;
+  doc["timestamp"]   = String(millis()); // ou iso8601
+  String body;
+  serializeJson(doc, body);
+  request->send(200, "application/json", body);
+});
+server.begin();
+
   //initialize Serial Monitor
-  Serial.begin(9600);
+  
   while (!Serial);
   Serial.println("LoRa Receiver");
 
@@ -34,8 +64,8 @@ void setup() {
   }
   //LoRa.setSyncWord(0xF3);
   LoRa.setSpreadingFactor(spreadingFactor);
-  //LoRa.setSignalBandwidth(bandwidth);
-  //LoRa.setCodingRate4(codingRate);
+  LoRa.setSignalBandwidth(bandwidth);
+  LoRa.setCodingRate4(codingRate);
   Serial.println("LoRa Initializing OK!");
 }
 
@@ -53,19 +83,24 @@ void loop() {
       pos3 = LoRaData.indexOf('-');
       t = LoRaData.substring(0, pos1);
       h = LoRaData.substring(pos1 +1, pos2);
-      v = LoRaData.substring(pos2 +1, pos3);
-      p = LoRaData.substring(pos3 +1, LoRaData.length());
-      Serial.print(t);
+      w = LoRaData.substring(pos2 +1, pos3);
+      r = LoRaData.substring(pos3 +1, LoRaData.length());
+      Serial.print(temperature);
       Serial.print("°C - ");
-      Serial.print(h);
+      Serial.print(humidity);
       Serial.print("% - ");
-      Serial.print(v);
+      Serial.print(windSpeed);
       Serial.print("km/h - ");
-      Serial.print(p);
-      Serial.print("mm - "); 
+      Serial.print(rainfall);
+      Serial.print("mm - Rssi ");
+      temperature = t.toDouble();
+      humidity = h.toDouble();
+      windSpeed = w.toDouble();
+      rainfall = r.toDouble(); 
     }
-    Serial.println(LoRa.packetRssi());
+    //Serial.println(LoRa.packetRssi());
     //Serial.println(packetSize);
+    
+    //delay(5000);
   }
-  
 }
